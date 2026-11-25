@@ -1,0 +1,22 @@
+# Build outputs & QA renders
+dist/
+_build/
+*.pdf
+*.jpg
+*.png
+!assets/**
+!templates/previews/**
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node (if used by helper scripts)
+node_modules/
+
+# OS / Editors
+.DS_Store
+Thumbs.db
+~$*.pptx
