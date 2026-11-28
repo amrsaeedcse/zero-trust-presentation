@@ -366,14 +366,14 @@ def build_part_09(prs) -> list:
         r_tag = p1.add_run()
         r_tag.text = f"{p_tag}  ▸  "
         r_tag.font.name = FONT_BODY
-        r_tag.font.size = Pt(13.5)
+        r_tag.font.size = Pt(14.5)
         r_tag.font.bold = True
         r_tag.font.color.rgb = rgb("SOFT_SAGE")
 
         r_head = p1.add_run()
         r_head.text = p_head
         r_head.font.name = FONT_TITLE
-        r_head.font.size = Pt(17.0)
+        r_head.font.size = Pt(18.5)
         r_head.font.bold = True
         r_head.font.color.rgb = rgb("WHITE")
 
@@ -383,7 +383,7 @@ def build_part_09(prs) -> list:
         r_sub = p2.add_run()
         r_sub.text = p_sub
         r_sub.font.name = FONT_BODY
-        r_sub.font.size = Pt(14.0)
+        r_sub.font.size = Pt(16.0)
         r_sub.font.color.rgb = rgb("ICE_MIST")
 
         layer_cards.append(c_shape)
@@ -418,7 +418,7 @@ def build_part_09(prs) -> list:
     cr1 = cp1.add_run()
     cr1.text = "★  THE CORE PROTECT SURFACE  ·  PART 09: UNIVERSITY DATA"
     cr1.font.name = FONT_BODY
-    cr1.font.size = Pt(14.5)
+    cr1.font.size = Pt(15.5)
     cr1.font.bold = True
     cr1.font.color.rgb = rgb("VERIFIED_MINT")
 
@@ -432,15 +432,15 @@ def build_part_09(prs) -> list:
         "Financial & Payroll Systems  ·  Encrypted Keys & Credentials"
     )
     cr2.font.name = FONT_TITLE
-    cr2.font.size = Pt(16.0)
+    cr2.font.size = Pt(17.5)
     cr2.font.bold = True
     cr2.font.color.rgb = rgb("WHITE")
 
     # Right Side: 2 Synthesis Takeaway Cards (clean vertical fit inside stage!)
     right_x = left_x + left_w + 0.42
     right_w = sw - (left_w + 1.12)
-    card_r1_h = 2.96
-    card_r2_h = 2.96
+    card_r1_h = 3.04
+    card_r2_h = 2.94
 
     card_r1 = add_frosted_card(
         s6,
@@ -459,8 +459,8 @@ def build_part_09(prs) -> list:
     tf_r1.vertical_anchor = MSO_ANCHOR.TOP
     tf_r1.margin_left = Inches(0.28)
     tf_r1.margin_right = Inches(0.28)
-    tf_r1.margin_top = Inches(0.22)
-    tf_r1.margin_bottom = Inches(0.16)
+    tf_r1.margin_top = Inches(0.18)
+    tf_r1.margin_bottom = Inches(0.14)
 
     pr1_head = tf_r1.paragraphs[0]
     pr1_head.alignment = PP_ALIGN.LEFT
@@ -468,13 +468,13 @@ def build_part_09(prs) -> list:
     run_r1_h = pr1_head.add_run()
     run_r1_h.text = "Never Trust the Path, Protect the Payload"
     run_r1_h.font.name = FONT_TITLE
-    run_r1_h.font.size = Pt(19.5)
+    run_r1_h.font.size = Pt(20.5)
     run_r1_h.font.bold = True
     run_r1_h.font.color.rgb = rgb("WHITE")
 
     pr1_body = tf_r1.add_paragraph()
     pr1_body.alignment = PP_ALIGN.LEFT
-    pr1_body.line_spacing = 1.18
+    pr1_body.line_spacing = 1.15
     run_r1_b = pr1_body.add_run()
     run_r1_b.text = (
         "In an open campus network, perimeters will inevitably be breached, credentials will be phished, "
@@ -483,13 +483,13 @@ def build_part_09(prs) -> list:
         "if an attacker breaches the network segment."
     )
     run_r1_b.font.name = FONT_BODY
-    run_r1_b.font.size = Pt(15.5)
+    run_r1_b.font.size = Pt(16.2)
     run_r1_b.font.color.rgb = rgb("ICE_MIST")
 
     card_r2 = add_frosted_card(
         s6,
         right_x,
-        top_y + card_r1_h + 0.18,
+        top_y + card_r1_h + 0.14,
         right_w,
         card_r2_h,
         fill_alpha=26.0,
@@ -503,8 +503,8 @@ def build_part_09(prs) -> list:
     tf_r2.vertical_anchor = MSO_ANCHOR.TOP
     tf_r2.margin_left = Inches(0.28)
     tf_r2.margin_right = Inches(0.28)
-    tf_r2.margin_top = Inches(0.22)
-    tf_r2.margin_bottom = Inches(0.16)
+    tf_r2.margin_top = Inches(0.18)
+    tf_r2.margin_bottom = Inches(0.14)
 
     pr2_head = tf_r2.paragraphs[0]
     pr2_head.alignment = PP_ALIGN.LEFT
@@ -512,13 +512,13 @@ def build_part_09(prs) -> list:
     run_r2_h = pr2_head.add_run()
     run_r2_h.text = "The Closed-Loop Assurance Architecture"
     run_r2_h.font.name = FONT_TITLE
-    run_r2_h.font.size = Pt(19.5)
+    run_r2_h.font.size = Pt(20.5)
     run_r2_h.font.bold = True
     run_r2_h.font.color.rgb = rgb("WHITE")
 
     pr2_body = tf_r2.add_paragraph()
     pr2_body.alignment = PP_ALIGN.LEFT
-    pr2_body.line_spacing = 1.18
+    pr2_body.line_spacing = 1.15
     run_r2_b = pr2_body.add_run()
     run_r2_b.text = (
         "Zero Trust is not a static gate but a continuous feedback loop. Every data access event feeds telemetry "
@@ -526,7 +526,7 @@ def build_part_09(prs) -> list:
         "session risk score, instantly revoking cryptographic keys and isolating endpoints before data can be stolen."
     )
     run_r2_b.font.name = FONT_BODY
-    run_r2_b.font.size = Pt(15.5)
+    run_r2_b.font.size = Pt(16.2)
     run_r2_b.font.color.rgb = rgb("ICE_MIST")
 
     # Queue animations for custom stage elements

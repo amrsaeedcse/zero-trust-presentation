@@ -217,7 +217,7 @@ def build_part_00(prs) -> list:
             r1 = p1.add_run()
             r1.text = topic
             r1.font.name = FONT_TITLE
-            r1.font.size = Pt(19.5)
+            r1.font.size = Pt(21.0)
             r1.font.bold = True
             r1.font.color.rgb = rgb("WHITE")
 
@@ -226,7 +226,7 @@ def build_part_00(prs) -> list:
             r2 = p2.add_run()
             r2.text = owner
             r2.font.name = FONT_BODY
-            r2.font.size = Pt(14.5)
+            r2.font.size = Pt(16.5)
             r2.font.color.rgb = rgb("ICE_MIST")
 
             row_elems.extend([card, chip])

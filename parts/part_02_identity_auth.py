@@ -397,14 +397,14 @@ def _slide_02_addresses_and_personas(prs):
             pcard,
             heading=ptitle,
             body=pdesc,
-            head_size=19.5,
-            body_size=16.5,
+            head_size=21.0,
+            body_size=18.5,
             head_color="WHITE",
             body_color="ICE_MIST",
             margin_x=0.24,
             margin_y=0.18,
             head_space_after=6.0,
-            line_spacing=1.16,
+            line_spacing=1.18,
         )
         pill = add_badge(
             slide,
@@ -1352,14 +1352,14 @@ def _slide_06_lifecycle_and_revocation(prs):
             rc,
             heading=rt,
             body=rb,
-            head_size=18.5,
-            body_size=16.5,
+            head_size=20.0,
+            body_size=18.0,
             head_color="VERIFIED_MINT",
             body_color="WHITE",
             margin_x=0.24,
             margin_y=0.16,
             head_space_after=6.0,
-            line_spacing=1.15,
+            line_spacing=1.16,
         )
         rev_cards.append(rc)
 

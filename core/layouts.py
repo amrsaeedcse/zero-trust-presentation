@@ -382,8 +382,8 @@ def L02_grid_2x2(
             card,
             heading=ctitle,
             body=cbody,
-            head_size=24.5,
-            body_size=19.0,
+            head_size=26.5,
+            body_size=21.0,
             align=PP_ALIGN.LEFT,
             valign=MSO_ANCHOR.TOP,
             head_font=FONT_TITLE,
@@ -815,7 +815,7 @@ def L05_table_compare(
         for ci in range(n_cols):
             table.columns[ci].width = Inches(eq)
 
-    body_fs = 16.0 if is_dense_tbl else (19.5 if len(rows) <= 4 else 17.5)
+    body_fs = 17.5 if is_dense_tbl else (20.0 if len(rows) <= 4 else 18.5)
     for ci, h_txt in enumerate(headers):
         cell_h = table.cell(0, ci)
         _style_table_cell(
@@ -824,7 +824,7 @@ def L05_table_compare(
             fill_hex=COLORS["TABLE_HEADER"],
             text_hex=COLORS["WHITE"],
             bold=True,
-            font_size=18.5 if is_dense_tbl else 19.5,
+            font_size=19.0 if is_dense_tbl else 20.0,
             align=PP_ALIGN.LEFT,
         )
         if is_dense_tbl:
@@ -952,7 +952,7 @@ def L06_chart_insight(
         height=4.45,
         text=insight,
         font_name=FONT_BODY,
-        font_size=20.0,
+        font_size=21.5,
         color="ICE_MIST",
         line_spacing=1.34,
         name="ChartInsight",
@@ -1024,6 +1024,10 @@ def L07_flowchart_6node(
         (xs[0], y_bot),
     ]
 
+    max_desc_len = max((len(s[1]) for s in steps[:6]), default=0)
+    flow_head_fs = 22.0 if max_desc_len <= 80 else 21.0
+    flow_body_fs = 21.0 if max_desc_len <= 80 else 19.0
+
     nodes = []
     headers = []
     for idx, (stitle, sdesc) in enumerate(steps[:6]):
@@ -1063,7 +1067,7 @@ def L07_flowchart_6node(
             height=0.48,
             text=stitle,
             font_name=FONT_TITLE,
-            font_size=20.0,
+            font_size=flow_head_fs,
             color="WHITE",
             bold=True,
             valign=MSO_ANCHOR.MIDDLE,
@@ -1077,7 +1081,7 @@ def L07_flowchart_6node(
             height=box_h - 1.06,
             text=sdesc,
             font_name=FONT_BODY,
-            font_size=17.5,
+            font_size=flow_body_fs,
             color="ICE_MIST",
             line_spacing=1.24,
             name=f"FlowDesc_{idx+1}",
@@ -1261,18 +1265,18 @@ def L09_two_columns(
             add_accent_strip(slide, x + 0.42, col_y, col_w - 0.84, 0.07, color=crown_col, rounded=False, name=f"{cname}_Crown")
 
         total_chars = sum(len(b) for b in bullets)
-        is_dense = total_chars > 420 or len(bullets) >= 4
-        is_medium = not is_dense and total_chars > 300
-        head_fs = 23.0 if is_dense else (25.5 if is_medium else 27.0)
-        b_fs = 15.5 if is_dense else (17.5 if is_medium else 19.5)
-        b_space = 8 if is_dense else (11 if is_medium else 14)
-        b_lead = 1.15 if is_dense else (1.20 if is_medium else 1.26)
+        is_dense = total_chars > 460
+        is_medium = not is_dense and total_chars > 330
+        head_fs = 25.0 if is_dense else (27.0 if is_medium else 29.0)
+        b_fs = 17.5 if is_dense else (19.5 if is_medium else 21.5)
+        b_space = 10 if is_dense else (14 if is_medium else 16)
+        b_lead = 1.20 if is_dense else (1.24 if is_medium else 1.28)
 
         tf = card.text_frame
         tf.vertical_anchor = MSO_ANCHOR.TOP
         tf.margin_left = Inches(0.36 if is_dense else 0.42)
         tf.margin_right = Inches(0.36 if is_dense else 0.42)
-        tf.margin_top = Inches(0.42 if not cbadge else (1.02 if is_dense else 1.18))
+        tf.margin_top = Inches(0.42 if not cbadge else (1.04 if is_dense else 1.18))
 
         if cbadge:
             add_badge(
@@ -1361,6 +1365,11 @@ def L10_three_cards(
     top_y = 2.28
     crowns = ["VERIFIED_MINT", "DARK_TEAL", "GOLD_ACCENT"]
 
+    max_tri_body = max((len(c[2]) for c in cards_data[:3]), default=0)
+    tri_tag_fs = 15.0 if max_tri_body <= 140 else 14.5
+    tri_head_fs = 31.0 if max_tri_body <= 140 else (28.5 if max_tri_body <= 265 else 27.5)
+    tri_body_fs = 23.0 if max_tri_body <= 140 else (21.0 if max_tri_body <= 265 else 19.5)
+
     cards = []
     extras = []
     for idx, (tag, heading, body) in enumerate(cards_data[:3]):
@@ -1393,7 +1402,7 @@ def L10_three_cards(
         r_tag = p_tag.add_run()
         r_tag.text = tag.upper()
         r_tag.font.name = FONT_TITLE
-        r_tag.font.size = Pt(13.5)
+        r_tag.font.size = Pt(tri_tag_fs)
         r_tag.font.bold = True
         r_tag.font.color.rgb = rgb(acc)
 
@@ -1404,7 +1413,7 @@ def L10_three_cards(
         r_h = p_h.add_run()
         r_h.text = heading
         r_h.font.name = FONT_DISPLAY
-        r_h.font.size = Pt(27.0)
+        r_h.font.size = Pt(tri_head_fs)
         r_h.font.bold = True
         r_h.font.color.rgb = rgb("WHITE")
 
@@ -1414,7 +1423,7 @@ def L10_three_cards(
         r_b = p_b.add_run()
         r_b.text = body
         r_b.font.name = FONT_BODY
-        r_b.font.size = Pt(19.0)
+        r_b.font.size = Pt(tri_body_fs)
         r_b.font.color.rgb = rgb("ICE_MIST")
 
         cards.append(card)
@@ -1513,8 +1522,8 @@ def L11_stepped_stack(
             card,
             heading=rtitle,
             body=rdesc,
-            head_size=22.5,
-            body_size=18.5,
+            head_size=24.5,
+            body_size=20.5,
             align=PP_ALIGN.LEFT,
             valign=MSO_ANCHOR.MIDDLE,
             text_color="WHITE",

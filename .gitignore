@@ -1,5 +1,6 @@
-# Build outputs & QA renders
-dist/
+# Build outputs & QA renders (track only final unified deck)
+dist/*
+!dist/Zero_Trust_Campus_Networks.pptx
 _build/
 *.pdf
 *.jpg
