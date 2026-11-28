@@ -39,6 +39,7 @@ from core.layouts import (
 from core.theme import (
     COLORS,
     FONT_BODY,
+    FONT_DISPLAY,
     FONT_TITLE,
     MARGIN_X,
     MARGIN_Y,
@@ -196,10 +197,10 @@ def _slide_02_addresses_and_personas(prs):
         left=MARGIN_X,
         top=0.80,
         width=20.0 - 2 * MARGIN_X,
-        height=0.92,
+        height=0.88,
         text="Identity Replaces Network Addresses Across Four Roles",
-        font_name=FONT_TITLE,
-        font_size=48.0,
+        font_name=FONT_DISPLAY,
+        font_size=41.0,
         color="WHITE",
         bold=True,
         align=PP_ALIGN.LEFT,
@@ -396,14 +397,14 @@ def _slide_02_addresses_and_personas(prs):
             pcard,
             heading=ptitle,
             body=pdesc,
-            head_size=21.5,
-            body_size=18.0,
+            head_size=19.5,
+            body_size=16.5,
             head_color="WHITE",
             body_color="ICE_MIST",
-            margin_x=0.26,
-            margin_y=0.22,
-            head_space_after=8.0,
-            line_spacing=1.20,
+            margin_x=0.24,
+            margin_y=0.18,
+            head_space_after=6.0,
+            line_spacing=1.16,
         )
         pill = add_badge(
             slide,
@@ -516,7 +517,7 @@ def _slide_03_sso_protocol_comparison(prs):
 
     # Clear each Decision cell BEFORE restyling so text never duplicates!
     decision_styles = [
-        (1, "Rejected\n(Emergency Backup)", COLORS["SOFT_SAGE"], "7A2218", 18.0),
+        (1, "Rejected\n(Emergency Backup)", COLORS["SOFT_SAGE"], COLORS["ALERT_CORAL"], 18.0),
         (2, "Fallback for\nLegacy Portals", COLORS["SOFT_SAGE"], COLORS["DARK_TEAL"], 18.0),
         (3, "PRIMARY STANDARD", COLORS["DARK_TEAL"], COLORS["VERIFIED_MINT"], 19.0),
     ]
@@ -636,7 +637,7 @@ def _slide_04_tiered_mfa_and_8021x(prs):
         width=20.0 - 2 * MARGIN_X,
         height=0.90,
         text="Tiered Multi-Factor Authentication & 802.1X Binding",
-        font_name=FONT_TITLE,
+        font_name=FONT_DISPLAY,
         font_size=48.0,
         color="WHITE",
         bold=True,
@@ -689,7 +690,7 @@ def _slide_04_tiered_mfa_and_8021x(prs):
             "VERIFIED_MINT",
             "Generates 30-second offline codes directly on smartphones; zero hardware cost; "
             "works reliably inside basement labs and signal dead zones.",
-            2.95,
+            2.72,
         ),
         (
             "Hardware Passkey / Web Authentication",
@@ -725,11 +726,11 @@ def _slide_04_tiered_mfa_and_8021x(prs):
             slide,
             left=MARGIN_X + 0.30,
             top=my + 0.22,
-            width=left_w - bw_pill - 0.72,
+            width=left_w - bw_pill - 0.68,
             height=0.52,
             text=mtitle,
             font_name=FONT_TITLE,
-            font_size=21.5,
+            font_size=19.0,
             color="WHITE",
             bold=True,
             name=f"MfaTitle_{idx+1}",
@@ -780,7 +781,7 @@ def _slide_04_tiered_mfa_and_8021x(prs):
         border_color="SAGE_GLASS",
         border_alpha=72.0,
         border_pt=1.25,
-        radius=0.05,
+        radius=0.024,
         name="EdgePanel",
     )
     rhdr = add_textbox(
@@ -918,7 +919,7 @@ def _slide_05_login_decision_flow(prs):
         width=20.0 - 2 * MARGIN_X,
         height=0.88,
         text="Eight-Step Zero Trust Login & Verification Flow",
-        font_name=FONT_TITLE,
+        font_name=FONT_DISPLAY,
         font_size=48.0,
         color="WHITE",
         bold=True,
@@ -991,13 +992,13 @@ def _slide_05_login_decision_flow(prs):
         _tight_pill_margins(num_pill, mx=0.04, my=0.02)
         ttl = add_textbox(
             slide,
-            left=x + 1.02,
+            left=x + 1.00,
             top=y + 0.21,
-            width=bw - 1.18,
+            width=bw - 1.14,
             height=0.46,
             text=stitle,
             font_name=FONT_TITLE,
-            font_size=19.0,
+            font_size=17.5,
             color="WHITE",
             bold=True,
             valign=MSO_ANCHOR.MIDDLE,
@@ -1068,6 +1069,7 @@ def _slide_05_login_decision_flow(prs):
     tf_sb.margin_left = Inches(0.36)
     tf_sb.margin_right = Inches(0.36)
     p_sb = tf_sb.paragraphs[0]
+    p_sb.alignment = PP_ALIGN.LEFT
     p_sb.line_spacing = 1.20
     r_sb1 = p_sb.add_run()
     r_sb1.text = "Architecture Boundary:  "
@@ -1129,7 +1131,7 @@ def _slide_06_lifecycle_and_revocation(prs):
         width=20.0 - 2 * MARGIN_X,
         height=0.88,
         text="Account Lifecycle & Sub-Minute Revocation",
-        font_name=FONT_TITLE,
+        font_name=FONT_DISPLAY,
         font_size=48.0,
         color="WHITE",
         bold=True,
@@ -1209,13 +1211,14 @@ def _slide_06_lifecycle_and_revocation(prs):
         slide,
         left=MARGIN_X,
         top=4.44,
-        width=12.4,
-        height=0.52,
+        width=12.60,
+        height=0.50,
         text="Walkthrough: Phished Student Account (Kareem) — Legacy Cookie vs. Zero Trust",
         font_name=FONT_TITLE,
-        font_size=23.5,
+        font_size=20.0,
         color="WHITE",
         bold=True,
+        valign=MSO_ANCHOR.MIDDLE,
         name="WalkthroughHeading",
     )
     sla_pill = add_badge(
@@ -1245,12 +1248,12 @@ def _slide_06_lifecycle_and_revocation(prs):
         top=leg_y,
         width=leg_w,
         height=leg_h,
-        fill_color="DARK_TEAL",
-        fill_alpha=84.0,
+        fill_color="ALERT_CORAL",
+        fill_alpha=100.0,
         border_color="ALERT_CORAL",
-        border_alpha=92.0,
-        border_pt=1.6,
-        radius=0.05,
+        border_alpha=85.0,
+        border_pt=1.5,
+        radius=0.028,
         name="LegacyCookieCard",
     )
     tf_leg = leg_card.text_frame
@@ -1260,11 +1263,12 @@ def _slide_06_lifecycle_and_revocation(prs):
     tf_leg.margin_top = Inches(0.28)
 
     p_lh = tf_leg.paragraphs[0]
+    p_lh.alignment = PP_ALIGN.LEFT
     p_lh.space_after = Pt(14)
     r_lh = p_lh.add_run()
     r_lh.text = "Legacy 8-Hour Cookie Gap"
     r_lh.font.name = FONT_TITLE
-    r_lh.font.size = Pt(24.0)
+    r_lh.font.size = Pt(23.0)
     r_lh.font.bold = True
     r_lh.font.color.rgb = rgb("ALERT_CORAL")
 
@@ -1275,6 +1279,7 @@ def _slide_06_lifecycle_and_revocation(prs):
     ]
     for b_lead, b_txt in legacy_bullets:
         pb = tf_leg.add_paragraph()
+        pb.alignment = PP_ALIGN.LEFT
         pb.space_after = Pt(14)
         pb.line_spacing = 1.22
         r1 = pb.add_run()
@@ -1347,14 +1352,14 @@ def _slide_06_lifecycle_and_revocation(prs):
             rc,
             heading=rt,
             body=rb,
-            head_size=20.5,
-            body_size=18.0,
+            head_size=18.5,
+            body_size=16.5,
             head_color="VERIFIED_MINT",
             body_color="WHITE",
-            margin_x=0.26,
-            margin_y=0.20,
-            head_space_after=8.0,
-            line_spacing=1.18,
+            margin_x=0.24,
+            margin_y=0.16,
+            head_space_after=6.0,
+            line_spacing=1.15,
         )
         rev_cards.append(rc)
 
@@ -1398,7 +1403,7 @@ def _slide_07_scenarios_and_bridge(prs):
         width=20.0 - 2 * MARGIN_X,
         height=0.86,
         text="Why Valid Identity Alone Never Grants Automatic Access",
-        font_name=FONT_TITLE,
+        font_name=FONT_DISPLAY,
         font_size=46.0,
         color="WHITE",
         bold=True,
@@ -1472,7 +1477,7 @@ def _slide_07_scenarios_and_bridge(prs):
             border_color=accent,
             border_alpha=86.0 if idx != 1 else 74.0,
             border_pt=1.5 if idx == 2 else 1.25,
-            radius=0.05,
+            radius=0.028,
             name=f"CaseCard_{idx+1}",
         )
         hdr = add_textbox(

@@ -461,7 +461,6 @@ def _slide_3_signals_and_states(prs):
 def _slide_4_certificates_and_gates(prs):
     """Slide 4: Anti-Spoofing Device Certificates, Tiered Freshness & Mandatory Gates Diagram."""
     slide = add_blank_slide(prs, bg="radial")
-    prism = add_motif(slide, "prism", left=15.9, top=-1.2, width=4.8)
 
     h1 = add_textbox(
         slide,
@@ -669,8 +668,7 @@ def _slide_4_certificates_and_gates(prs):
     add_footer(slide, PART_LABEL, slide_num=4)
 
     anim = SlideAnimator(slide, transition="fade")
-    anim.fade_in(prism, trigger="on_load", duration_ms=420)
-    anim.fade_in(h1, trigger="with_previous", duration_ms=340)
+    anim.fade_in(h1, trigger="on_load", duration_ms=340)
     anim.fade_in(sub, trigger="with_previous", duration_ms=340, delay_ms=80)
     anim.stagger(src_cards, effect="fly_left", step_ms=110, on_click_first=False)
     anim.stagger(src_arrows, effect="wipe_right", step_ms=70, on_click_first=False)

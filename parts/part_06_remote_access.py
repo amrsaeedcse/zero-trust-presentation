@@ -541,17 +541,17 @@ def _build_slide_03_ztna_architecture(prs):
     )
     lbl_out = add_badge(
         slide,
-        left=9.48,
-        top=flow_y + 0.65,
-        width=2.92,
-        height=0.60,
+        left=9.28,
+        top=flow_y + 0.68,
+        width=3.32,
+        height=0.52,
         text="← Outbound mTLS (Inside → Out)",
         fill_color="OBSIDIAN",
         fill_alpha=90.0,
         border_color="VERIFIED_MINT",
         border_alpha=90.0,
         text_color="VERIFIED_MINT",
-        font_size=14.0,
+        font_size=13.0,
         name="LblInsideOut",
     )
 
@@ -590,7 +590,7 @@ def _build_slide_03_ztna_architecture(prs):
         border_color="SAGE_GLASS",
         border_alpha=32.0,
         title_color="ICE_MIST",
-        sub_color="SAGE_GLASS",
+        sub_color="SOFT_SAGE",
         title_fs=18.5,
         sub_fs=15.5,
         name="ZtnaHiddenApps",

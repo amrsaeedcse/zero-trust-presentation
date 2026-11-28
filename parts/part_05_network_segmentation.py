@@ -224,15 +224,15 @@ def build_part_05(prs) -> list:
     tf_fab.vertical_anchor = MSO_ANCHOR.TOP
     tf_fab.margin_left = Inches(0.35)
     tf_fab.margin_right = Inches(0.35)
-    tf_fab.margin_top = Inches(0.42)
+    tf_fab.margin_top = Inches(0.32)
 
     pf0 = tf_fab.paragraphs[0]
     pf0.alignment = PP_ALIGN.CENTER
-    pf0.space_after = Pt(14)
+    pf0.space_after = Pt(10)
     rf0 = pf0.add_run()
     rf0.text = "SDN & East-West\nInspection Fabric"
     rf0.font.name = FONT_TITLE
-    rf0.font.size = Pt(28.0)
+    rf0.font.size = Pt(25.0)
     rf0.font.bold = True
     rf0.font.color.rgb = rgb("WHITE")
 
@@ -245,12 +245,12 @@ def build_part_05(prs) -> list:
     for pt_txt in fabric_points:
         pf = tf_fab.add_paragraph()
         pf.alignment = PP_ALIGN.LEFT
-        pf.space_after = Pt(12)
-        pf.line_spacing = 1.2
+        pf.space_after = Pt(8)
+        pf.line_spacing = 1.15
         rf = pf.add_run()
         rf.text = f"▸  {pt_txt}"
         rf.font.name = FONT_BODY
-        rf.font.size = Pt(19.0)
+        rf.font.size = Pt(17.5)
         rf.font.color.rgb = rgb("ICE_MIST")
 
     fabric_badge = add_badge(

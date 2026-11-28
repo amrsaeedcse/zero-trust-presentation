@@ -15,7 +15,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from core.theme import new_presentation
+from core.theme import THEME_PRESETS, apply_theme_fonts, new_presentation, set_active_theme
 
 REPO_ROOT = Path(__file__).resolve().parent
 DIST_DIR = REPO_ROOT / "dist"
@@ -81,6 +81,7 @@ def build_deck(part_only: int | None = None, out_path: Path | None = None) -> Pa
         print(f"  Part 10 | {len(prs.slides) - before:2d} slide(s) | Conclusion & References")
         target = out_path or (DIST_DIR / "Zero_Trust_Campus_Networks.pptx")
 
+    apply_theme_fonts(prs)
     prs.save(str(target))
     print(f"\nSaved: {target} ({len(prs.slides)} total slide(s))")
     return target
@@ -98,10 +99,13 @@ def run_validation(pptx_path: Path) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build Zero Trust Campus Networks PPTX presentation.")
     parser.add_argument("--part", type=int, choices=range(1, 10), metavar="1..9", help="Build only one member part")
+    parser.add_argument("--theme", choices=list(THEME_PRESETS.keys()), default="ivory_executive", help="Visual theme preset")
     parser.add_argument("--out", type=Path, help="Optional custom output .pptx path")
     parser.add_argument("--validate", action="store_true", help="Run .agents/skills/pptx validate.py after build")
     parser.add_argument("--list", action="store_true", help="List all 9 parts and owners")
     args = parser.parse_args()
+
+    set_active_theme(args.theme)
 
     if args.list:
         print("Zero Trust Architecture for University Campus Networks — Team Parts:")

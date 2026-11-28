@@ -6,6 +6,7 @@ _build/
 *.png
 !assets/**
 !templates/previews/**
+!templates/atelier_art/**
 
 # Python
 __pycache__/
