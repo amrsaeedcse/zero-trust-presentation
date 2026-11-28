@@ -103,6 +103,13 @@ _EFFECT_PRESETS = {
 }
 
 
+# Global presentation pacing policy:
+# When True, every slide's entrance animations play smoothly on slide entry
+# (converting mid-slide `on_click` steps into crisp `after_previous` beats)
+# so every presenter click cleanly advances to the next slide.
+AUTO_PLAY_SLIDE_ANIMATIONS = True
+
+
 class SlideAnimator:
     """Fluent OOXML animation builder for a single PowerPoint slide."""
 
@@ -126,13 +133,20 @@ class SlideAnimator:
             raise ValueError(f"Unknown effect {effect!r}. Valid: {list(_EFFECT_PRESETS)}")
         if trigger not in ("on_load", "on_click", "with_previous", "after_previous"):
             raise ValueError(f"Invalid trigger {trigger!r}")
+        eff_trigger = trigger
+        eff_delay = max(0, int(delay_ms))
+        eff_dur = max(1, int(duration_ms))
+        if AUTO_PLAY_SLIDE_ANIMATIONS and eff_trigger == "on_click":
+            eff_trigger = "after_previous"
+            eff_delay = max(eff_delay, 90)
+            eff_dur = min(eff_dur, 320)
         self._steps.append(
             _AnimStep(
                 spid=int(shape.shape_id),
                 effect=effect,
-                trigger=trigger,
-                duration_ms=max(1, int(duration_ms)),
-                delay_ms=max(0, int(delay_ms)),
+                trigger=eff_trigger,
+                duration_ms=eff_dur,
+                delay_ms=eff_delay,
             )
         )
         return self

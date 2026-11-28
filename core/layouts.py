@@ -640,7 +640,7 @@ def L07_flowchart_6node(
     subtitle: str,
     steps: Sequence[Tuple[str, str]],
     part_label: Optional[str] = None,
-    click_reveal: bool = True,
+    click_reveal: bool = False,
     transition: str = "fade",
 ):
     """Build a 6-step serpentine connected architecture flow (Top L->R, Bottom R->L)."""
