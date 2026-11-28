@@ -218,13 +218,13 @@ def _add_roadmap_slide(prs):
 
     set_notes(
         slide,
-        "[~50s] A university cannot rip-and-replace its network during an active semester, so we use a "
-        "four-phase brownfield roadmap. Phase 1 focuses on visibility: inventorying users, devices, and "
-        "normal traffic flows before blocking anything. Phase 2 unifies baseline trust through central SSO, "
-        "risk-based MFA, and baseline posture checks on managed workstations. Phase 3 isolates critical labs "
-        "and admin ERP systems and replaces broad VPN tunnels with per-application ZTNA. Finally, Phase 4 "
-        "links the monitoring telemetry we saw in Part 7 to automate session cutoffs and scale across faculties. "
-        "The golden rule: prove value on crown-jewel systems first, then expand.",
+        "[~50s] تطبيق Zero Trust في الجامعة لازم يكون تدريجي، لأننا مينفعش نغيّر البنية التحتية للشبكة بالكامل أثناء الدراسة.\n\n"
+        "عشان كده بنستخدم Four-Phase Roadmap:\n\n"
+        "أول Phase هي Discover and Classify، ودي بنعمل فيها Inventory للمستخدمين والأجهزة والتطبيقات، وبنحدد الـ Critical Assets.\n\n"
+        "تاني Phase هي Unify Baseline Trust، ودي بنوحد فيها تسجيل الدخول باستخدام SSO، ونطبق Adaptive MFA، ونتأكد من حالة الأجهزة المُدارة.\n\n"
+        "تالت Phase هي Segment and Shift Access، ودي بنعزل المعامل والأنظمة الإدارية المهمة، ونستبدل الـ Broad VPN بالـ ZTNA، بحيث كل مستخدم يوصل للتطبيق المصرح له فقط.\n\n"
+        "آخر Phase هي Automate and Optimize، ودي بنربط الـ Monitoring بالـ Automated Session Cutoff، ونحسن الـ Risk Thresholds، وبعدها نوسع التطبيق لباقي الكليات.\n\n"
+        "والقاعدة الأساسية إننا نبدأ بالأنظمة الأكثر أهمية، نختبر النتائج، وبعدها نتوسع.",
     )
     return slide
 
@@ -387,14 +387,12 @@ def _add_challenges_slide(prs):
 
     set_notes(
         slide,
-        "[~50s] Copying a corporate Zero Trust blueprint straight onto a university fails because of five "
-        "campus realities. First, academic freedom: we rely on background risk scoring and SSO, triggering "
-        "step-up MFA only for sensitive actions. Second, student BYOD diversity: we isolate unmanaged devices "
-        "and serve courses through browser-based clientless ZTNA. Third, legacy lab equipment and IoT that "
-        "cannot run security agents go into micro-segmented enclaves behind gateway enforcement points. "
-        "Fourth, decentralized faculty IT is solved through federated governance—central baseline rules with "
-        "local faculty administration. Fifth, limited budgets are addressed by reusing existing 802.1X switches, "
-        "protecting critical assets first, and adopting mature open-source tools.",
+        "[~50s] تطبيق Zero Trust في الجامعات بيواجه خمس تحديات رئيسية.\n\n"
+        "أولًا، الحفاظ على Academic Freedom، وده بنعالجه باستخدام SSO وBackground Risk Scoring، بحيث نطلب Step-up MFA عند العمليات الحساسة فقط.\n\n"
+        "ثانيًا، تنوع أجهزة الطلاب أو BYOD، وده بنعالجه بعزل الأجهزة غير المُدارة وتوفير Clientless ZTNA للوصول للـ LMS.\n\n"
+        "ثالثًا، الأجهزة القديمة في المعامل والـ IoT، ودي ممكن متدعمش Security Agents، فبنحطها داخل Micro-segmented Enclaves.\n\n"
+        "رابعًا، استقلال إدارات الكليات، والحل هو Federated Governance: سياسات أساسية مركزية مع إدارة محلية.\n\n"
+        "وأخيرًا، محدودية الميزانية، وده بنواجهه بإعادة استخدام أجهزة الشبكة الموجودة، وحماية الأنظمة الأهم أولًا، والاستفادة من Open-source Tools.",
     )
     return slide
 
@@ -418,10 +416,8 @@ def build_part_08(prs) -> list:
     )
     set_notes(
         s1,
-        "[~30s] Building on Part 7's continuous monitoring and automated response, Part 8 answers two "
-        "practical engineering questions: how does a university actually migrate its existing campus "
-        "network to Zero Trust without disrupting academic work, and how do we measure whether the "
-        "deployment succeeds in security, performance, and usability?",
+        "[~30s] السلام عليكم. أنا عمرو، والجزء بتاعي هو Adoption and Evaluation في Zero Trust Architecture for University Campus Networks.\n\n"
+        "بعد ما Part 7 اتكلم عن Continuous Monitoring وAutomated Response، الجزء بتاعي بيركز على سؤالين: إزاي نطبق Zero Trust على شبكة الجامعة الحالية من غير ما نعطل العملية التعليمية؟ وإزاي نقيس نجاح التطبيق من ناحية Security وPerformance وUsability؟",
     )
     slides.append(s1)
 
@@ -450,11 +446,10 @@ def build_part_08(prs) -> list:
     )
     set_notes(
         s3,
-        "[~40s] To track progress objectively, we align our roadmap with CISA's Zero Trust Maturity Model "
-        "version 2.0. It measures five pillars—Identity, Devices, Networks, Applications, and Data—across "
-        "four stages from Traditional implicit trust up to Optimal continuous automation. Most universities "
-        "start between Traditional and Initial, and reach Advanced first on high-impact systems before "
-        "pursuing Optimal automation campus-wide.",
+        "[~40s] علشان نقيس مدى تطور التطبيق، بنستخدم CISA Zero Trust Maturity Model v2.0.\n\n"
+        "الموديل بيقيّم خمس Pillars: Identity, Devices, Networks, Applications, and Data.\n\n"
+        "وكل Pillar بيمر بأربع مراحل: Traditional, Initial, Advanced, وOptimal.\n\n"
+        "وده بيساعد الجامعة تحدد مستواها الحالي، وتعرف إيه الخطوات المطلوبة للوصول لمستوى أعلى من الـ Automation والـ Security.",
     )
     slides.append(s3)
 
@@ -487,13 +482,11 @@ def build_part_08(prs) -> list:
     )
     set_notes(
         s5,
-        "[~50s] How do we prove the deployment actually works? We evaluate across three engineering pillars "
-        "shown here. For security effectiveness, we target hiding over 95% of internal hosts—leaving under 5% "
-        "visible—containing over 90% of lateral movement, detecting threats in under 60 seconds, and automating "
-        "cutoffs under 15 seconds. For network performance, proxy and policy checks add only 10 to 16 milliseconds "
-        "to session setup while retaining at least 92% of baseline throughput under iPerf3 and Wireshark testing. "
-        "For user experience and TCO, false rejections stay below 1.5%, cutting helpdesk tickets while switch "
-        "reuse keeps costs controlled.",
+        "[~50s] بعد التطبيق لازم نقيس كفاءته باستخدام Engineering Metrics.\n\n"
+        "من ناحية Security، بنستهدف إخفاء أكتر من 95% من الـ Internal Hosts، واحتواء أكتر من 90% من محاولات Lateral Movement، مع MTTD أقل من 60 ثانية وSession Cutoff أقل من 15 ثانية.\n\n"
+        "من ناحية Network Performance، الزيادة في Session Setup Delay تكون من 10 إلى 16 milliseconds، مع الحفاظ على Throughput لا يقل عن 92% من المعدل الأساسي.\n\n"
+        "أما User Experience، فبنستهدف إن نسبة False Blocks تكون أقل من 1.5%، مع تقليل Helpdesk Tickets والتكلفة الكلية TCO.\n\n"
+        "وبنختبر النتائج باستخدام iPerf3 وBreach Drills.",
     )
     slides.append(s5)
 
@@ -532,13 +525,11 @@ def build_part_08(prs) -> list:
     )
     set_notes(
         s6,
-        "[~45s] Before scaling campus-wide, we validate these metrics in a two-track pilot trial. On the left, "
-        "a student using a personal laptop accesses the LMS through an isolated onboarding segment and clientless "
-        "browser ZTNA, tested during registration peaks to verify >= 92% throughput and under 1.5% false blocks. "
-        "On the right, a faculty member accessing the grading control server must use a managed workstation, "
-        "strong posture checks, and step-up MFA with sub-15-second cutoff protection. And notice where every "
-        "phase, challenge, and metric points: protecting the classified university data at the center—which "
-        "brings us directly to Part 9 on Data Security and Classification.",
+        "[~45s] قبل ما نعمم النظام على الجامعة، بنعمل Pilot Trial على حالتين.\n\n"
+        "الحالة الأولى طالب بيستخدم Personal Laptop للوصول للـ LMS، وبيتم توجيهه من خلال Isolated BYOD Segment وClientless ZTNA، وبنختبر الأداء وقت ضغط التسجيل، مع الحفاظ على Throughput لا يقل عن 92%.\n\n"
+        "الحالة التانية عضو هيئة تدريس بيحاول يوصل للـ Grading Control Server. هنا لازم يستخدم Managed Workstation، ويجتاز Device Posture Check وAdaptive MFA، وبعدها بياخد Temporary Encrypted Session من خلال الـ PEP، مع إمكانية إنهاء الاتصال في أقل من 15 ثانية.\n\n"
+        "وفي النهاية، كل مراحل التطبيق والاختبارات دي هدفها حماية بيانات الجامعة والأنظمة الحساسة، وده بيمهد للجزء التالي Part 9: Data Security and Classification.\n\n"
+        "Thank you for listening.",
     )
     slides.append(s6)
 
