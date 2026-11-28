@@ -232,7 +232,6 @@ def _add_roadmap_slide(prs):
 
     _set_rtl_notes(
         slide,
-        "(المدة: 50 ثانية)\n"
         "تطبيق Zero Trust في الجامعة لازم يكون تدريجي، لأننا مينفعش نغيّر البنية التحتية للشبكة بالكامل أثناء الدراسة.\n"
         "عشان كده بنستخدم Four-Phase Roadmap:\n"
         "• أول Phase هي Discover and Classify: بنعمل فيها Inventory للمستخدمين والأجهزة والتطبيقات، وبنحدد الـ Critical Assets.\n"
@@ -432,7 +431,6 @@ def build_part_08(prs) -> list:
     )
     _set_rtl_notes(
         s1,
-        "(المدة: 30 ثانية)\n"
         "السلام عليكم. أنا عمرو، والجزء بتاعي هو Adoption and Evaluation في Zero Trust Architecture for University Campus Networks.\n"
         "بعد ما Part 7 اتكلم عن Continuous Monitoring و Automated Response، الجزء بتاعي بيركز على سؤالين: إزاي نطبق Zero Trust على شبكة الجامعة الحالية من غير ما نعطل العملية التعليمية؟ وإزاي نقيس نجاح التطبيق من ناحية Security و Performance و Usability؟",
     )
@@ -463,7 +461,6 @@ def build_part_08(prs) -> list:
     )
     _set_rtl_notes(
         s3,
-        "(المدة: 40 ثانية)\n"
         "علشان نقيس مدى تطور التطبيق، بنستخدم CISA Zero Trust Maturity Model v2.0.\n"
         "الموديل بيقيّم خمس Pillars: Identity و Devices و Networks و Applications و Data.\n"
         "وكل Pillar بيمر بأربع مراحل: Traditional و Initial و Advanced و Optimal.\n"
@@ -500,7 +497,6 @@ def build_part_08(prs) -> list:
     )
     _set_rtl_notes(
         s5,
-        "(المدة: 50 ثانية)\n"
         "بعد التطبيق لازم نقيس كفاءته باستخدام Engineering Metrics:\n"
         "• من ناحية Security: بنستهدف إخفاء أكتر من 95% من الـ Internal Hosts، واحتواء أكتر من 90% من محاولات Lateral Movement، مع MTTD أقل من 60 ثانية و Session Cutoff أقل من 15 ثانية.\n"
         "• من ناحية Network Performance: الزيادة في Session Setup Delay تكون من 10 إلى 16 milliseconds، مع الحفاظ على Throughput لا يقل عن 92% من المعدل الأساسي.\n"
@@ -544,7 +540,6 @@ def build_part_08(prs) -> list:
     )
     _set_rtl_notes(
         s6,
-        "(المدة: 45 ثانية)\n"
         "قبل ما نعمم النظام على الجامعة، بنعمل Pilot Trial على حالتين:\n"
         "• الحالة الأولى: طالب بيستخدم Personal Laptop للوصول للـ LMS، وبيتم توجيهه من خلال Isolated BYOD Segment و Clientless ZTNA، وبنختبر الأداء وقت ضغط التسجيل، مع الحفاظ على Throughput لا يقل عن 92%.\n"
         "• الحالة التانية: عضو هيئة تدريس بيحاول يوصل للـ Grading Control Server. هنا لازم يستخدم Managed Workstation، ويجتاز Device Posture Check و Adaptive MFA، وبعدها بياخد Temporary Encrypted Session من خلال الـ PEP، مع إمكانية إنهاء الاتصال في أقل من 15 ثانية.\n"
