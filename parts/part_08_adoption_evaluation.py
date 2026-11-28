@@ -50,6 +50,20 @@ from core.theme import (
 PART_LABEL = "Part 08  ·  Adoption & Evaluation"
 
 
+def _set_rtl_notes(slide, text: str) -> None:
+    """Set speaker notes with proper Right-to-Left (BiDi) direction for mixed Arabic/English."""
+    set_notes(slide, text)
+    for p in slide.notes_slide.notes_text_frame.paragraphs:
+        has_arabic = any("\u0600" <= ch <= "\u06FF" for ch in p.text)
+        pPr = p._p.get_or_add_pPr()
+        if has_arabic:
+            p.alignment = PP_ALIGN.RIGHT
+            pPr.set("rtl", "1")
+        else:
+            p.alignment = PP_ALIGN.LEFT
+            pPr.set("rtl", "0")
+
+
 def _add_roadmap_slide(prs):
     """Slide 2 (L04): Four-Phase Brownfield Campus Adoption Roadmap."""
     slide, anim, bounds = L04_wide_visual(
@@ -216,14 +230,15 @@ def _add_roadmap_slide(prs):
     anim.fade_in(banner, trigger="after_previous", duration_ms=360)
     anim.apply()
 
-    set_notes(
+    _set_rtl_notes(
         slide,
-        "[~50s] تطبيق Zero Trust في الجامعة لازم يكون تدريجي، لأننا مينفعش نغيّر البنية التحتية للشبكة بالكامل أثناء الدراسة.\n\n"
-        "عشان كده بنستخدم Four-Phase Roadmap:\n\n"
-        "أول Phase هي Discover and Classify، ودي بنعمل فيها Inventory للمستخدمين والأجهزة والتطبيقات، وبنحدد الـ Critical Assets.\n\n"
-        "تاني Phase هي Unify Baseline Trust، ودي بنوحد فيها تسجيل الدخول باستخدام SSO، ونطبق Adaptive MFA، ونتأكد من حالة الأجهزة المُدارة.\n\n"
-        "تالت Phase هي Segment and Shift Access، ودي بنعزل المعامل والأنظمة الإدارية المهمة، ونستبدل الـ Broad VPN بالـ ZTNA، بحيث كل مستخدم يوصل للتطبيق المصرح له فقط.\n\n"
-        "آخر Phase هي Automate and Optimize، ودي بنربط الـ Monitoring بالـ Automated Session Cutoff، ونحسن الـ Risk Thresholds، وبعدها نوسع التطبيق لباقي الكليات.\n\n"
+        "(المدة: 50 ثانية)\n"
+        "تطبيق Zero Trust في الجامعة لازم يكون تدريجي، لأننا مينفعش نغيّر البنية التحتية للشبكة بالكامل أثناء الدراسة.\n"
+        "عشان كده بنستخدم Four-Phase Roadmap:\n"
+        "• أول Phase هي Discover and Classify: بنعمل فيها Inventory للمستخدمين والأجهزة والتطبيقات، وبنحدد الـ Critical Assets.\n"
+        "• تاني Phase هي Unify Baseline Trust: بنوحد فيها تسجيل الدخول باستخدام SSO، ونطبق Adaptive MFA، ونتأكد من حالة الأجهزة المُدارة.\n"
+        "• تالت Phase هي Segment and Shift Access: بنعزل المعامل والأنظمة الإدارية المهمة، ونستبدل الـ Broad VPN بالـ ZTNA، بحيث كل مستخدم يوصل للتطبيق المصرح له فقط.\n"
+        "• آخر Phase هي Automate and Optimize: بنربط الـ Monitoring بالـ Automated Session Cutoff، ونحسن الـ Risk Thresholds، وبعدها نوسع التطبيق لباقي الكليات.\n"
         "والقاعدة الأساسية إننا نبدأ بالأنظمة الأكثر أهمية، نختبر النتائج، وبعدها نتوسع.",
     )
     return slide
@@ -385,14 +400,15 @@ def _add_challenges_slide(prs):
         anim.fly_in(s_card, direction="right", trigger="with_previous", duration_ms=280, delay_ms=90)
     anim.apply()
 
-    set_notes(
+    _set_rtl_notes(
         slide,
-        "[~50s] تطبيق Zero Trust في الجامعات بيواجه خمس تحديات رئيسية.\n\n"
-        "أولًا، الحفاظ على Academic Freedom، وده بنعالجه باستخدام SSO وBackground Risk Scoring، بحيث نطلب Step-up MFA عند العمليات الحساسة فقط.\n\n"
-        "ثانيًا، تنوع أجهزة الطلاب أو BYOD، وده بنعالجه بعزل الأجهزة غير المُدارة وتوفير Clientless ZTNA للوصول للـ LMS.\n\n"
-        "ثالثًا، الأجهزة القديمة في المعامل والـ IoT، ودي ممكن متدعمش Security Agents، فبنحطها داخل Micro-segmented Enclaves.\n\n"
-        "رابعًا، استقلال إدارات الكليات، والحل هو Federated Governance: سياسات أساسية مركزية مع إدارة محلية.\n\n"
-        "وأخيرًا، محدودية الميزانية، وده بنواجهه بإعادة استخدام أجهزة الشبكة الموجودة، وحماية الأنظمة الأهم أولًا، والاستفادة من Open-source Tools.",
+        "(المدة: 50 ثانية)\n"
+        "تطبيق Zero Trust في الجامعات بيواجه خمس تحديات رئيسية:\n"
+        "• أولًا، الحفاظ على Academic Freedom: بنعالجه باستخدام SSO و Background Risk Scoring، بحيث نطلب Step-up MFA عند العمليات الحساسة فقط.\n"
+        "• ثانيًا، تنوع أجهزة الطلاب (BYOD): بنعالجه بعزل الأجهزة غير المُدارة وتوفير Clientless ZTNA للوصول للـ LMS.\n"
+        "• ثالثًا، الأجهزة القديمة في المعامل والـ IoT: دي ممكن متدعمش Security Agents، فبنحطها داخل Micro-segmented Enclaves.\n"
+        "• رابعًا، استقلال إدارات الكليات: الحل هو Federated Governance، سياسات أساسية مركزية مع إدارة محلية.\n"
+        "• وأخيرًا، محدودية الميزانية: بنواجهه بإعادة استخدام أجهزة الشبكة الموجودة، وحماية الأنظمة الأهم أولًا، والاستفادة من Open-source Tools.",
     )
     return slide
 
@@ -414,10 +430,11 @@ def build_part_08(prs) -> list:
         motif="crescents",
         transition="push_left",
     )
-    set_notes(
+    _set_rtl_notes(
         s1,
-        "[~30s] السلام عليكم. أنا عمرو، والجزء بتاعي هو Adoption and Evaluation في Zero Trust Architecture for University Campus Networks.\n\n"
-        "بعد ما Part 7 اتكلم عن Continuous Monitoring وAutomated Response، الجزء بتاعي بيركز على سؤالين: إزاي نطبق Zero Trust على شبكة الجامعة الحالية من غير ما نعطل العملية التعليمية؟ وإزاي نقيس نجاح التطبيق من ناحية Security وPerformance وUsability؟",
+        "(المدة: 30 ثانية)\n"
+        "السلام عليكم. أنا عمرو، والجزء بتاعي هو Adoption and Evaluation في Zero Trust Architecture for University Campus Networks.\n"
+        "بعد ما Part 7 اتكلم عن Continuous Monitoring و Automated Response، الجزء بتاعي بيركز على سؤالين: إزاي نطبق Zero Trust على شبكة الجامعة الحالية من غير ما نعطل العملية التعليمية؟ وإزاي نقيس نجاح التطبيق من ناحية Security و Performance و Usability؟",
     )
     slides.append(s1)
 
@@ -444,11 +461,12 @@ def build_part_08(prs) -> list:
         part_label=PART_LABEL,
         transition="fade",
     )
-    set_notes(
+    _set_rtl_notes(
         s3,
-        "[~40s] علشان نقيس مدى تطور التطبيق، بنستخدم CISA Zero Trust Maturity Model v2.0.\n\n"
-        "الموديل بيقيّم خمس Pillars: Identity, Devices, Networks, Applications, and Data.\n\n"
-        "وكل Pillar بيمر بأربع مراحل: Traditional, Initial, Advanced, وOptimal.\n\n"
+        "(المدة: 40 ثانية)\n"
+        "علشان نقيس مدى تطور التطبيق، بنستخدم CISA Zero Trust Maturity Model v2.0.\n"
+        "الموديل بيقيّم خمس Pillars: Identity و Devices و Networks و Applications و Data.\n"
+        "وكل Pillar بيمر بأربع مراحل: Traditional و Initial و Advanced و Optimal.\n"
         "وده بيساعد الجامعة تحدد مستواها الحالي، وتعرف إيه الخطوات المطلوبة للوصول لمستوى أعلى من الـ Automation والـ Security.",
     )
     slides.append(s3)
@@ -480,13 +498,14 @@ def build_part_08(prs) -> list:
         part_label=PART_LABEL,
         transition="fade",
     )
-    set_notes(
+    _set_rtl_notes(
         s5,
-        "[~50s] بعد التطبيق لازم نقيس كفاءته باستخدام Engineering Metrics.\n\n"
-        "من ناحية Security، بنستهدف إخفاء أكتر من 95% من الـ Internal Hosts، واحتواء أكتر من 90% من محاولات Lateral Movement، مع MTTD أقل من 60 ثانية وSession Cutoff أقل من 15 ثانية.\n\n"
-        "من ناحية Network Performance، الزيادة في Session Setup Delay تكون من 10 إلى 16 milliseconds، مع الحفاظ على Throughput لا يقل عن 92% من المعدل الأساسي.\n\n"
-        "أما User Experience، فبنستهدف إن نسبة False Blocks تكون أقل من 1.5%، مع تقليل Helpdesk Tickets والتكلفة الكلية TCO.\n\n"
-        "وبنختبر النتائج باستخدام iPerf3 وBreach Drills.",
+        "(المدة: 50 ثانية)\n"
+        "بعد التطبيق لازم نقيس كفاءته باستخدام Engineering Metrics:\n"
+        "• من ناحية Security: بنستهدف إخفاء أكتر من 95% من الـ Internal Hosts، واحتواء أكتر من 90% من محاولات Lateral Movement، مع MTTD أقل من 60 ثانية و Session Cutoff أقل من 15 ثانية.\n"
+        "• من ناحية Network Performance: الزيادة في Session Setup Delay تكون من 10 إلى 16 milliseconds، مع الحفاظ على Throughput لا يقل عن 92% من المعدل الأساسي.\n"
+        "• أما User Experience: بنستهدف إن نسبة False Blocks تكون أقل من 1.5%، مع تقليل Helpdesk Tickets والتكلفة الكلية TCO.\n"
+        "وبنختبر النتائج باستخدام iPerf3 و Breach Drills.",
     )
     slides.append(s5)
 
@@ -523,12 +542,13 @@ def build_part_08(prs) -> list:
         part_label=PART_LABEL,
         transition="fade",
     )
-    set_notes(
+    _set_rtl_notes(
         s6,
-        "[~45s] قبل ما نعمم النظام على الجامعة، بنعمل Pilot Trial على حالتين.\n\n"
-        "الحالة الأولى طالب بيستخدم Personal Laptop للوصول للـ LMS، وبيتم توجيهه من خلال Isolated BYOD Segment وClientless ZTNA، وبنختبر الأداء وقت ضغط التسجيل، مع الحفاظ على Throughput لا يقل عن 92%.\n\n"
-        "الحالة التانية عضو هيئة تدريس بيحاول يوصل للـ Grading Control Server. هنا لازم يستخدم Managed Workstation، ويجتاز Device Posture Check وAdaptive MFA، وبعدها بياخد Temporary Encrypted Session من خلال الـ PEP، مع إمكانية إنهاء الاتصال في أقل من 15 ثانية.\n\n"
-        "وفي النهاية، كل مراحل التطبيق والاختبارات دي هدفها حماية بيانات الجامعة والأنظمة الحساسة، وده بيمهد للجزء التالي Part 9: Data Security and Classification.\n\n"
+        "(المدة: 45 ثانية)\n"
+        "قبل ما نعمم النظام على الجامعة، بنعمل Pilot Trial على حالتين:\n"
+        "• الحالة الأولى: طالب بيستخدم Personal Laptop للوصول للـ LMS، وبيتم توجيهه من خلال Isolated BYOD Segment و Clientless ZTNA، وبنختبر الأداء وقت ضغط التسجيل، مع الحفاظ على Throughput لا يقل عن 92%.\n"
+        "• الحالة التانية: عضو هيئة تدريس بيحاول يوصل للـ Grading Control Server. هنا لازم يستخدم Managed Workstation، ويجتاز Device Posture Check و Adaptive MFA، وبعدها بياخد Temporary Encrypted Session من خلال الـ PEP، مع إمكانية إنهاء الاتصال في أقل من 15 ثانية.\n"
+        "وفي النهاية، كل مراحل التطبيق والاختبارات دي هدفها حماية بيانات الجامعة والأنظمة الحساسة، وده بيمهد للجزء التالي Part 9: Data Security and Classification.\n"
         "Thank you for listening.",
     )
     slides.append(s6)
